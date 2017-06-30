@@ -112,9 +112,9 @@ class write_param(api_url, api_cor_params):
 
         API_URL = self.api_url()
         PARAMS = self.api_correct_params()
-        if platform.system() == "Darwin":
+        if platform.system() == "Windows":
             os.chdir(r"E:\Original_code\api_testng")
-        elif platform.system() == "Windows":
+        elif platform.system() == "Darwin":
             os.chdir("/Users/shishuaigang/PycharmProjects/api_testng")
         with open('APIparam.csv', 'wb') as csvfile:
             temp = csv.writer(csvfile, dialect='excel')
@@ -124,12 +124,7 @@ class write_param(api_url, api_cor_params):
 if __name__ == "__main__":
     path_windows = r"E:\test\inroad"
     path_mac = "/Users/shishuaigang/Desktop/Auto_test/testjson"
-    print api_num(path_mac).json_data
-    print api_num(path_mac).read_section()
-    print platform.system()
-    '''
     if platform.system() == "Darwin":
         write_param(path_mac).writeCSV()
     elif platform.system() == "Windows":
         write_param(path_windows).writeCSV()
-'''
