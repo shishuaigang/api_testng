@@ -4,6 +4,7 @@ import os
 import codecs
 import json
 import sys
+import platform
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -103,7 +104,6 @@ class api_cor_params(api_url):
                 st = st + (
                     api_param_details[i].keys()[j] + "=" + str(api_param_details[i].values()[j]["default"]) + "&")
             params.append(st + "APIVersion=999999999")
-            # params.append(dict(zip(params_keys, params_values)))
         return params
 
 
@@ -112,12 +112,24 @@ class write_param(api_url, api_cor_params):
 
         API_URL = self.api_url()
         PARAMS = self.api_correct_params()
-        os.chdir(r"E:\Original_code\api_testng")
+        if platform.system() == "Darwin":
+            os.chdir(r"E:\Original_code\api_testng")
+        elif platform.system() == "Windows":
+            os.chdir("/Users/shishuaigang/PycharmProjects/api_testng")
         with open('APIparam.csv', 'wb') as csvfile:
             temp = csv.writer(csvfile, dialect='excel')
             for i in range(len(API_URL)):
                 temp.writerow([API_URL[i], PARAMS[i]])
 
 if __name__ == "__main__":
-    path = r"E:\test\inroad"
-    write_param(path).writeCSV()
+    path_windows = r"E:\test\inroad"
+    path_mac = "/Users/shishuaigang/Desktop/Auto_test/testjson"
+    print api_num(path_mac).json_data
+    print api_num(path_mac).read_section()
+    print platform.system()
+    '''
+    if platform.system() == "Darwin":
+        write_param(path_mac).writeCSV()
+    elif platform.system() == "Windows":
+        write_param(path_windows).writeCSV()
+'''
