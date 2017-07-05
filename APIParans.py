@@ -118,6 +118,7 @@ class write_param(api_url, api_cor_params):
             os.chdir("/Users/shishuaigang/PycharmProjects/api_testng")
         with open('APIparam.csv', 'wb') as csvfile:
             temp = csv.writer(csvfile, dialect='excel')
+            temp.writerow(["url","params"])
             for i in range(len(API_URL)):
                 temp.writerow([API_URL[i], PARAMS[i]])
 
